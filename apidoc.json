@@ -1,0 +1,7 @@
+{
+    "name": "Fake Store API",
+    "version": "0.1.2",
+    "description": "Basic Operations",
+    "title": "Fake Store API",
+    "url": "curl https://api.fakestoreapi.com/v1"
+}
