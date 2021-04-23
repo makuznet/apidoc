@@ -15,11 +15,11 @@
   notify:
     - reload_nginx
 
-# - name: copy files to vhost
-#   copy:
-#     src: "doc/"
-#     dest: "/var/www/doc/"
-#     mode: 644      
+- name: copy files to vhost
+  copy:
+    src: "doc/"
+    dest: "/var/www/doc/"
+    mode: 644      
 
 - name: creating vhost conf file
   template:
