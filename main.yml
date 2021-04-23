@@ -1,0 +1,6 @@
+---
+- name: Routing vhost via nginx proxy
+  hosts: web
+  roles:
+    - role: vhost
+      tags: vhost

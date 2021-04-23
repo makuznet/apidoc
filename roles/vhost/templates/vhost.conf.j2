@@ -1,0 +1,12 @@
+server {
+        listen {{item.vh_port}};
+
+        root /var/www/{{item.vh_name}};
+        index index.html;
+
+        server_name {{item.vh_name}}.{{inventory_hostname}} www.{{item.vh_name}}.{{inventory_hostname}} ;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }  
+}

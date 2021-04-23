@@ -3,5 +3,5 @@
     "version": "0.1.2",
     "description": "Basic Operations",
     "title": "Fake Store API",
-    "url": "curl https://api.fakestoreapi.com/v1"
+    "url": "https://api.fakestoreapi.com/v1"
 }

@@ -1,0 +1,6 @@
+---
+- name: enable_n_autostart_nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true

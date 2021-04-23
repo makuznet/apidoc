@@ -7,6 +7,13 @@
 ## APIDOC installation
 
 ## Usage 
+### Creating documentation based on comments:
+```shell
+apidoc -i ./ -o doc/
+```
+-i — interactive;  
+./ — scan for files in the current dir;  
+-o doc/ — put documentation in the doc dir;  
 
 ## Installation  
 ### Clone this repo

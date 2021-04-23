@@ -2,7 +2,11 @@
  *
  * @api {get} /products Get all products information
  * @apiName GetProducts
- * @apiGroup Products
+ * @apiGroup Product
+ * 
+ * @apiExample {curl} Example usage:
+ *     curl -X GET "https://api.fakestoreapi.com/v1/products" \
+        --header "Content-Type: application/json" 
  *
  * @apiSuccess {Number} id Id of the product.
  * @apiSuccess {String} title Product title.
@@ -39,9 +43,13 @@
  /**
  * @api {get} /products/:id Get product information
  * @apiName GetProduct
- * @apiGroup Products
+ * @apiGroup Product
  *
  * @apiParam {Number} id Product unique id.
+ * 
+ * @apiExample {curl} Example usage:
+ *     curl -X GET "https://api.fakestoreapi.com/v1/products/:id" \
+        --header "Content-Type: application/json" 
  *
  * @apiSuccess {Number} id Id of the product.
  * @apiSuccess {String} title Product title.
@@ -71,11 +79,22 @@
  */
  
  /**
- * @api {put} /products/:id Update product information
+ * @api {put} /products/ Update product information
  * @apiPermission admin
  * @apiName UpdateProduct
- * @apiGroup Products
- *
+ * @apiGroup Product
+ * 
+ * @apiExample {curl} Example usage:
+ *     curl -X PUT "https://api.fakestoreapi.com/v1/products/:id" \
+        --header "Content-Type: application/json" \
+        --data-raw '{
+                    "title": "test product",
+                    "price": 13.5,
+                    "description": "lorem ipsum set",
+                    "image": "https://i.pravatar.cc",
+                    "category": "electronic"
+        }'
+ * 
  * @apiParam {Number} id Product unique id.
  * @apiParam {String} title New title.
  * @apiParam {Number} price New price.
@@ -113,21 +132,35 @@
  /**
  * @api {post} /products/carts Add products to a cart
  * @apiName UpdateProduct
- * @apiGroup Products
+ * @apiGroup Cart
  *
- * @apiParam {Number} id Cart id.
+ * @apiExample {curl} Example usage:
+ *     curl -X POST "https://api.fakestoreapi.com/v1/carts" \
+        --header "Content-Type: application/json" \
+        --data-raw '{
+                    "userId": 5,
+                    "date": "2020-02-03",
+                    "products": [
+                        {
+                            "productId": 5,
+                            "quantity": 1
+                        },
+                        {
+                            "productId": 1,
+                            "quantity": 5
+                        }
+                    ]
+        }'
+ *
  * @apiParam {Number} userId User id.
  * @apiParam {String} date Date.
- * @apiParam {Object} products Product
- * @apiParam {Number} products.productId
- * @apiParam {Number} products.productId.quantity
+ * @apiParam {Number} productId Id of the product.
+ * @apiParam {Number} quantity Product quantity.
  *
- * @apiSuccess {Number} id Cart id.
  * @apiSuccess {Number} userId User id.
- * @apiSuccess {String} date Date.
- * @apiSuccess {Object} products Product
- * @apiSuccess {Number} products.productId
- * @apiSuccess {Number} products.productId.quantity
+ * @apiSuccess {String} date Order date.
+ * @apiSuccess {Number} productId Id of the product.
+ * @apiSuccess {Number} quantity Product quantity.
  * 
  * @apiSuccessExample Success-Response:
  *      HTTP/1.1 200 OK

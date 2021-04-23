@@ -1,0 +1,21 @@
+---
+- name: install nginx
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    name: nginx=1.14.2-2+deb10u3
+    state: present
+  notify:
+    - enable_n_autostart_nginx
+
+- name: conveying files via template
+  template:
+    src: "{{item.src_file}}"
+    dest: "{{item.dest_file}}"
+  loop:
+    - {
+        src_file: "nginx.conf.j2",
+        dest_file: "/etc/nginx/nginx.conf"
+      }
+  notify:
+    - reload_nginx

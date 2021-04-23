@@ -1,10 +1,149 @@
 define({ "api": [
   {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p>"
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./doc/main.js",
+    "group": "/Users/makuznet/Documents/rebrain/apidoc/doc/main.js",
+    "groupTitle": "/Users/makuznet/Documents/rebrain/apidoc/doc/main.js",
+    "name": ""
+  },
+  {
+    "type": "post",
+    "url": "/products/carts",
+    "title": "Add products to a cart",
+    "name": "UpdateProduct",
+    "group": "Cart",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X POST \"https://api.fakestoreapi.com/v1/carts\" \\\n    --header \"Content-Type: application/json\" \\\n    --data-raw '{\n                \"userId\": 5,\n                \"date\": \"2020-02-03\",\n                \"products\": [\n                    {\n                        \"productId\": 5,\n                        \"quantity\": 1\n                    },\n                    {\n                        \"productId\": 1,\n                        \"quantity\": 5\n                    }\n                ]\n    }'",
+        "type": "curl"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>User id.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>Date.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "productId",
+            "description": "<p>Id of the product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Product quantity.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>User id.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>Order date.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "productId",
+            "description": "<p>Id of the product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Product quantity.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n   {\n       id:21\n       userId:5,\n       date:2020-02-03,\n       products:[{productId:5,quantity:1},{productId:1,quantity:5}]\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ProductNotFound",
+            "description": "<p>Product not found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not found\n   {\n       \"error\": \"ProductNotFound\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./api.php",
+    "groupTitle": "Cart"
+  },
+  {
     "type": "get",
     "url": "/products/:id",
     "title": "Get product information",
     "name": "GetProduct",
-    "group": "Products",
+    "group": "Product",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -18,6 +157,13 @@ define({ "api": [
         ]
       }
     },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X GET \"https://api.fakestoreapi.com/v1/products/:id\" \\\n    --header \"Content-Type: application/json\"",
+        "type": "curl"
+      }
+    ],
     "success": {
       "fields": {
         "Success 200": [
@@ -94,14 +240,21 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "./api.php",
-    "groupTitle": "Products"
+    "groupTitle": "Product"
   },
   {
     "type": "get",
     "url": "/products",
     "title": "Get all products information",
     "name": "GetProducts",
-    "group": "Products",
+    "group": "Product",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X GET \"https://api.fakestoreapi.com/v1/products\" \\\n    --header \"Content-Type: application/json\"",
+        "type": "curl"
+      }
+    ],
     "success": {
       "fields": {
         "Success 200": [
@@ -178,11 +331,11 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "./api.php",
-    "groupTitle": "Products"
+    "groupTitle": "Product"
   },
   {
     "type": "put",
-    "url": "/products/:id",
+    "url": "/products/",
     "title": "Update product information",
     "permission": [
       {
@@ -190,7 +343,14 @@ define({ "api": [
       }
     ],
     "name": "UpdateProduct",
-    "group": "Products",
+    "group": "Product",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X PUT \"https://api.fakestoreapi.com/v1/products/:id\" \\\n    --header \"Content-Type: application/json\" \\\n    --data-raw '{\n                \"title\": \"test product\",\n                \"price\": 13.5,\n                \"description\": \"lorem ipsum set\",\n                \"image\": \"https://i.pravatar.cc\",\n                \"category\": \"electronic\"\n    }'",
+        "type": "curl"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -315,138 +475,6 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "./api.php",
-    "groupTitle": "Products"
-  },
-  {
-    "type": "post",
-    "url": "/products/carts",
-    "title": "Add products to a cart",
-    "name": "UpdateProduct",
-    "group": "Products",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Cart id.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "userId",
-            "description": "<p>User id.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "date",
-            "description": "<p>Date.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Object",
-            "optional": false,
-            "field": "products",
-            "description": "<p>Product</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "products.productId",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "products.productId.quantity",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Cart id.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "userId",
-            "description": "<p>User id.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "date",
-            "description": "<p>Date.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "products",
-            "description": "<p>Product</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "products.productId",
-            "description": ""
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "products.productId.quantity",
-            "description": ""
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n   {\n       id:21\n       userId:5,\n       date:2020-02-03,\n       products:[{productId:5,quantity:1},{productId:1,quantity:5}]\n   }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "ProductNotFound",
-            "description": "<p>Product not found.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not found\n   {\n       \"error\": \"ProductNotFound\"\n   }",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./api.php",
-    "groupTitle": "Products"
+    "groupTitle": "Product"
   }
 ] });
